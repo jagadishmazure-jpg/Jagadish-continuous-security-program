@@ -1,0 +1,42 @@
+{
+  "_comment": "EXAMPLE ONLY, never deployed. A Logic Apps (Consumption) definition sketch: it is Disabled, runs on a schedule, fetches the preview built by the job, waits for a named person to approve, and only then calls the mail connector. Deploying it creates billable Azure resources; get approval and a cost estimate first.",
+  "state": "Disabled",
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "previewUrl": { "type": "string" },
+      "approverEmail": { "type": "string" },
+      "recipients": { "type": "string" }
+    },
+    "triggers": {
+      "weekly": {
+        "type": "Recurrence",
+        "recurrence": { "frequency": "Week", "interval": 1, "schedule": { "weekDays": ["Monday"], "hours": [7] },
+                        "timeZone": "Eastern Standard Time" }
+      }
+    },
+    "actions": {
+      "Get_preview": { "type": "Http", "inputs": { "method": "GET", "uri": "@parameters('previewUrl')" } },
+      "Wait_for_human_approval": {
+        "type": "ApiConnectionWebhook",
+        "runAfter": { "Get_preview": ["Succeeded"] },
+        "inputs": { "_note": "approval connector: a named approver chooses Approve or Reject",
+                    "to": "@parameters('approverEmail')", "options": "Approve, Reject" }
+      },
+      "Only_if_approved": {
+        "type": "If",
+        "runAfter": { "Wait_for_human_approval": ["Succeeded"] },
+        "expression": { "and": [ { "equals": [ "@body('Wait_for_human_approval')?['SelectedOption']", "Approve" ] } ] },
+        "actions": {
+          "Send_with_mail_connector": {
+            "type": "ApiConnection",
+            "inputs": { "_note": "SendGrid or Office 365 connector; key comes from Key Vault, never from this file",
+                        "to": "@parameters('recipients')", "body": "@body('Get_preview')" }
+          }
+        },
+        "else": { "actions": {} }
+      }
+    }
+  }
+}

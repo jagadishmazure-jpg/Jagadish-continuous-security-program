@@ -1,0 +1,3 @@
+name: secprog-codeql
+queries:
+  - uses: security-and-quality

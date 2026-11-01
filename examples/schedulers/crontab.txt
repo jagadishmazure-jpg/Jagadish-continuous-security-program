@@ -1,0 +1,4 @@
+# Continuous security program reports (previews only unless sending is configured AND approved)
+CRON_TZ=America/New_York
+0 7 * * 1-5 cd /opt/continuous-security-program && python -m secprog report --kind daily --out out
+0 7 * * 1 cd /opt/continuous-security-program && python -m secprog report --kind weekly --out out

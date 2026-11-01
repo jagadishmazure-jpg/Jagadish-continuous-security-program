@@ -1,0 +1,8 @@
+{
+  "_comment": "EXAMPLE ONLY. enabled is false, so reports.send() refuses. Even with enabled=true it also needs approved=True and a transport function; this repo ships none. Never put keys here: use a vault reference.",
+  "enabled": false,
+  "transport": "sendgrid",
+  "to": ["security-leadership@brightwater-ledger.example"],
+  "allowed_domains": ["brightwater-ledger.example"],
+  "api_key_ref": "vault://kv-example/secrets/report-mail-key"
+}
