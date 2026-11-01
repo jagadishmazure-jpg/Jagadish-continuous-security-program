@@ -59,7 +59,8 @@ def test_roadmap():
         r.approve("agent:vciso", "vciso")
     with pytest.raises(PermissionError):
         r.approve("amara", "ciso")
-    assert r.approve("val.vciso", "vciso") == "approved"
+    result = r.approve("val.vciso", "vciso")
+    assert result == "approved"
 
 
 def test_roadmap_needs_items():
@@ -182,7 +183,8 @@ def test_ai_generated_test_needs_approval():
     with pytest.raises(ValueError):
         t.approve("amara", "")
     t.approve("amara", "threshold matches policy")
-    assert t.run() == "pass" and t.log.verify()[0]
+    outcome = t.run()
+    assert outcome == "pass" and t.log.verify()[0]
 
 
 @pytest.mark.parametrize("metric", sorted(controls.measurements()))
@@ -190,7 +192,8 @@ def test_ai_generated_test_needs_approval():
 def test_draft_test_ops(metric, op):
     t = controls.draft_test("CTL-01", metric, op, 0)
     t.approve("amara", "test")
-    assert t.run() in ("pass", "fail")
+    outcome = t.run()
+    assert outcome in ("pass", "fail")
 
 
 def test_draft_test_rejects_bad_input():
@@ -355,7 +358,8 @@ def test_queue_decider(by, role):
 def test_acceptance_expiry(days, ok):
     q = vciso.Queue()
     if ok:
-        assert q.decide("VQ-01", "val", "vciso", "approve", "r", days)["expires_days"] == days
+        decision = q.decide("VQ-01", "val", "vciso", "approve", "r", days)
+        assert decision["expires_days"] == days
     else:
         with pytest.raises(ValueError):
             q.decide("VQ-01", "val", "vciso", "approve", "r", days)

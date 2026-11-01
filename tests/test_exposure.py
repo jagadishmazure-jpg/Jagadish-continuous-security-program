@@ -153,7 +153,8 @@ def test_ctem_rescan_decides(passed, status):
     c = ctem.Cycle("svc", "o")
     c.open_ticket("T", "f", "o")
     c.mark_fixed("T", "dev")
-    assert c.close("T", "maria", rescan={"T": passed}).status == status
+    ticket = c.close("T", "maria", rescan={"T": passed})
+    assert ticket.status == status
 
 
 def test_five_minute_list():

@@ -95,7 +95,8 @@ def test_kb_queue():
         k.approve("KB-100", "sme.a")
     with pytest.raises(PermissionError):
         k.approve("KB-100", "agent:q")
-    assert k.approve("KB-100", "sme.b")["approved_by"] == "sme.b"
+    entry = k.approve("KB-100", "sme.b")
+    assert entry["approved_by"] == "sme.b"
 
 
 def test_kb_hygiene():

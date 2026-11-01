@@ -85,7 +85,8 @@ def test_keep_needs_note():
     c = access_review.Campaign("r")
     with pytest.raises(ValueError):
         c.decide("U-1", "dormant", "keep", "rina")
-    assert c.decide("U-1", "dormant", "keep", "rina", "break-glass")["decision"] == "keep"
+    decision = c.decide("U-1", "dormant", "keep", "rina", "break-glass")
+    assert decision["decision"] == "keep"
 
 
 def test_completion_empty():
@@ -166,7 +167,8 @@ def test_register_approval_rules(fields, ok):
     r = Register()
     r.request("tool", *fields)
     if ok:
-        assert r.decide("tool", "approve", "chair", "fine").status == "approved"
+        decided = r.decide("tool", "approve", "chair", "fine")
+        assert decided.status == "approved"
     else:
         with pytest.raises(ValueError):
             r.decide("tool", "approve", "chair", "fine")
