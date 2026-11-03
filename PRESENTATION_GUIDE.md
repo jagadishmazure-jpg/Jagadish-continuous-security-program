@@ -56,7 +56,6 @@ python -m secprog copilot "which vendors are overdue?"
 | Why can't agents approve? | Accountability. The gate raises an error when an agent identity tries; tests cover every gate. |
 | Isn't 47.4% coverage low? | It is on a hard synthetic set (12 slots, 19 exploited). The comparison matters: 3x CVSS-only at the same workload. |
 | Are the framework mappings audited? | No. They are approximate crosswalks; the type is recorded per framework. |
-| What about the vendor statistics in your research? | They are listed only in SOURCE_COVERAGE as vendor claims, never used as facts. |
 | How would you deploy it? | See the implementation guide: real importers, keep the gate, add a reviewed transport, re-measure. |
 
 ## Cheat card

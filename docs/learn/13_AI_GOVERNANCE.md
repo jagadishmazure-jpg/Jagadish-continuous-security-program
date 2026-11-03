@@ -7,11 +7,8 @@ and an outage drill are measured, and how shadow AI is found.
 
 ## Why this matters (context only)
 
-A 2026 CEO survey published by Dataiku (*Global AI Confessions: CEO Edition*) **claims** that most CEOs believe
-employees use AI without approval, worry about legal exposure from AI agents, and feel over-exposed to too few AI
-vendors. These are **Dataiku's self-reported survey claims**, not facts measured here. No code, test or report in
-this repo uses them; they only explain why the KPIs below exist. The exact survey figures are listed, labelled,
-in [SOURCE_COVERAGE.md](../SOURCE_COVERAGE.md).
+Leaders worry about staff using AI without approval, legal exposure from AI agents, and depending on too few AI
+vendors. The KPIs below exist to answer those worries, measured on synthetic data.
 
 ## The 12 KPIs, measured on synthetic data
 

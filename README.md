@@ -96,8 +96,7 @@ flowchart LR
   recipients, a vault key reference, `approved=True` and a transport; the repo ships no transport.
 - **No billable cloud.** No cloud SDKs, no keys, nothing deployed. The Microsoft Foundry / Logic Apps example is a
   disabled sketch.
-- **Fictional companies only**, enforced by `scripts/check_brands.py`. Vendor research that inspired features is
-  credited in [docs/SOURCE_COVERAGE.md](docs/SOURCE_COVERAGE.md), where every vendor figure is labelled a claim.
+- **Fictional companies only**, enforced by `scripts/check_brands.py`.
 - **Every number labelled.** measured (counted by code on synthetic data), synthetic, or SIMULATED (assumption).
 
 ## Docs
@@ -106,7 +105,7 @@ flowchart LR
 - [USE_CASES.md](USE_CASES.md) · [AGENTS.md](AGENTS.md) · [PRESENTATION_GUIDE.md](PRESENTATION_GUIDE.md)
 - [Framework coverage](docs/FRAMEWORK_COVERAGE.md) · [Threat model](docs/threat-model.md) · [ADRs](docs/adr/)
 - [Implementation guide](docs/implementation-guide.md) · [Interview points](docs/interview-points.md) ·
-  [Glossary](docs/glossary.md) · [Source coverage](docs/SOURCE_COVERAGE.md) · [Security policy](SECURITY.md)
+  [Glossary](docs/glossary.md) · [Security policy](SECURITY.md)
 
 ## Related repos
 
